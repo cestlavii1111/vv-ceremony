@@ -251,13 +251,16 @@
 
   .photo-row {
     display: flex;
+    justify-content: center;
     gap: 4px;
     max-width: 900px;
     margin: 0 auto;
     padding: 0 4px;
   }
   .photo-slot {
-    flex: 1;
+    flex: 0 1 380px;
+    width: 100%;
+    max-width: 380px;
     aspect-ratio: 4 / 5;
     overflow: hidden;
     background: var(--coffee-deep);
@@ -918,9 +921,7 @@
 </div>
 
 <div class="photo-row">
-  <div class="photo-slot"><img src="1_vii.jpg" alt=""></div>
   <div class="photo-slot"><img src="IMG_4052.JPG" alt=""></div>
-  <div class="photo-slot"><img src="1_vale.jpg" alt=""></div>
 </div>
 
 <section id="rsvp">
@@ -1009,7 +1010,8 @@
   <div class="item">
     <div class="item-label">1:30 – 2:30 PM</div>
     <h3>Courthouse Ceremony</h3>
-    <p>Our appointment is at the <a class="map-link" href="https://maps.google.com/?q=1600+Pacific+Hwy,+San+Diego,+CA+92101" target="_blank" rel="noopener">San Diego County Administration Center, 1600 Pacific Hwy, San Diego, CA 92101</a> — a short, simple legal ceremony, intimate and just for our closest people.</p>
+    <p>Our appointment is at the <a class="map-link" href="https://maps.google.com/?q=1600+Pacific+Hwy,+San+Diego,+CA+92101" target="_blank" rel="noopener">San Diego County Administration Center</a>.</p>
+    <p>It's a short, simple legal ceremony — intimate, and just for our closest&nbsp;people.</p>
   </div>
   <div class="item">
     <div class="item-label">After</div>
