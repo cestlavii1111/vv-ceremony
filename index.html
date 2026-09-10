@@ -548,6 +548,7 @@
   .rsvp-done-text { color: var(--stone-light); font-size: 0.95rem; letter-spacing: 0.03em; margin-bottom: 30px; }
 
   #lodgingToggleBtn { margin-top: 18px; }
+  #parkingToggleBtn { margin-top: 26px; }
   .lodging-list { margin-top: 32px; }
   .lodging-option {
     padding: 18px 0;
@@ -1083,11 +1084,12 @@
     <div class="item-label">1:00 PM</div>
     <h3>Arrival</h3>
     <p>Give yourself time to find parking and get through security before we're called in — see the Parking section below for details.</p>
+    <p style="margin-top:12px;"><strong>Please bring a valid photo ID</strong> — you'll need it to get through security.</p>
   </div>
   <div class="item">
     <div class="item-label">1:30 – 2:30 PM</div>
     <h3>Courthouse Ceremony</h3>
-    <p>Our appointment is at the <a class="map-link" href="https://maps.google.com/?q=1600+Pacific+Hwy,+San+Diego,+CA+92101" target="_blank" rel="noopener">San Diego County Administration Center</a>.</p>
+    <p>Our appointment is at the <a class="map-link" href="https://maps.app.goo.gl/SGxU8RpbjgoxDnV56" target="_blank" rel="noopener">San Diego County Administration Center</a>.</p>
     <p>It's a short, simple legal ceremony — intimate, and just for our closest&nbsp;people.</p>
   </div>
   <div class="item">
@@ -1102,24 +1104,45 @@
 
   <div class="item">
     <h3>The Address</h3>
-    <p><a class="map-link" href="https://maps.google.com/?q=1600+Pacific+Hwy,+San+Diego,+CA+92101" target="_blank" rel="noopener">San Diego County Administration Center — 1600 Pacific Hwy, San Diego, CA 92101</a></p>
+    <p><a class="map-link" href="https://maps.app.goo.gl/SGxU8RpbjgoxDnV56" target="_blank" rel="noopener">1600 Pacific Hwy, Ste 273, San Diego, CA</a></p>
     <div class="map-embed">
       <iframe
-        src="https://www.google.com/maps?q=1600+Pacific+Hwy,+San+Diego,+CA+92101&output=embed"
+        src="https://www.google.com/maps?q=1600+Pacific+Hwy,+Ste+273,+San+Diego,+CA&output=embed"
         width="100%" height="260" style="border:0;" loading="lazy"
         allowfullscreen referrerpolicy="no-referrer-when-downgrade"
-        title="Map to 1600 Pacific Hwy, San Diego, CA 92101"></iframe>
+        title="Map to 1600 Pacific Hwy, Ste 273, San Diego, CA"></iframe>
     </div>
   </div>
   <div class="item">
     <h3>Parking</h3>
-    <p>This is downtown San Diego, so street parking is metered and can fill up fast. Give yourself extra time — we recommend arriving by 1:00 PM for our 1:30 PM appointment.</p>
-    <p>There's a public parking structure on-site at the County Administration Center, plus several paid lots and garages nearby along Pacific Hwy and Front St. if it's full. <span class="edit-flag">exact lot details coming soon</span></p>
+    <p><strong>Location:</strong> The underground garage entrance is on Ash Street, between Pacific Hwy and North Harbor Drive — standard public parking rates apply.</p>
+    <p style="margin-top:20px;"><strong>Alternatives:</strong> If the garage fills up, there's metered street parking nearby, plus downtown pay lots and Waterfront Park parking.</p>
+
+    <button type="button" class="rsvp-add-guest" id="parkingToggleBtn">Find Nearby Pay Lots</button>
+
+    <div class="rsvp-collapsible" id="parkingCollapsible">
+      <div class="rsvp-collapsible-inner">
+        <div class="lodging-list">
+          <div class="lodging-option">
+            <div class="lodging-name">Waterfront Park Parking</div>
+            <div class="lodging-note">Public lot right along the park, a short walk from the courthouse.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/Waterfront+Park+Parking+San+Diego" target="_blank" rel="noopener">View on Maps</a>
+          </div>
+          <div class="lodging-option">
+            <div class="lodging-name">County Operations Center Lots</div>
+            <div class="lodging-note">A few paid lots serving the County Center complex nearby.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/parking+near+1600+Pacific+Hwy+San+Diego+CA" target="_blank" rel="noopener">View on Maps</a>
+          </div>
+          <div class="lodging-option">
+            <div class="lodging-name">Downtown Pay Lots</div>
+            <div class="lodging-note">Several other pay lots and garages are scattered throughout downtown within walking distance.</div>
+            <a class="map-link" href="https://www.google.com/maps/search/parking+lots+downtown+San+Diego" target="_blank" rel="noopener">View on Maps</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="item">
-    <h3>Security</h3>
-    <p>Like any courthouse building, there's a security check at the entrance — plan for a few extra minutes to get through, and avoid bringing anything that wouldn't clear an airport-style screening.</p>
-  </div>
+
 </section>
 
 <section id="attire">
@@ -1503,6 +1526,20 @@
 
     tick();
     setInterval(tick, 30000);
+  })();
+</script>
+
+<script>
+  (function () {
+    var toggleBtn = document.getElementById('parkingToggleBtn');
+    var collapsible = document.getElementById('parkingCollapsible');
+    var expanded = false;
+
+    toggleBtn.addEventListener('click', function () {
+      expanded = !expanded;
+      collapsible.classList.toggle('expanded', expanded);
+      toggleBtn.textContent = expanded ? 'Close' : 'Find Nearby Pay Lots';
+    });
   })();
 </script>
 
