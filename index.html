@@ -810,6 +810,7 @@
     padding-bottom: 26px;
     margin-bottom: 26px;
   }
+  .rsvp-autocomplete-field { position: relative; }
   .rsvp-lookup-row {
     display: flex;
     gap: 10px;
@@ -827,6 +828,10 @@
     padding: 12px 14px;
   }
   .rsvp-lookup-row input:focus { outline: none; border-color: var(--stone-light); }
+  .rsvp-lookup-row input:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
   .rsvp-lookup-row button {
     background: var(--white);
     color: var(--plum);
@@ -847,6 +852,56 @@
     letter-spacing: 0.02em;
   }
   .rsvp-lookup-result.found { color: var(--white); }
+  .rsvp-suggestions {
+    position: fixed;
+    z-index: 250;
+    background: var(--coffee);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.35);
+    overflow-y: auto;
+    max-height: 240px;
+  }
+  .rsvp-suggestion-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-family: var(--font);
+    font-size: 0.9rem;
+    padding: 11px 14px;
+    cursor: pointer;
+  }
+  .rsvp-suggestion-item:last-child { border-bottom: none; }
+  .rsvp-suggestion-item:hover,
+  .rsvp-suggestion-item:focus {
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+  }
+  .rsvp-lookup-confirmed {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+    color: var(--white);
+  }
+  .rsvp-change-btn {
+    background: none;
+    border: none;
+    color: var(--stone-light);
+    font-family: var(--font);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0;
+  }
+  .rsvp-change-btn:hover { color: var(--white); }
 
   footer {
     text-align: center;
@@ -937,21 +992,22 @@
     <div class="rsvp-collapsible-inner">
 
       <div class="rsvp-lookup">
-        <div class="rsvp-field">
+        <div class="rsvp-field rsvp-autocomplete-field">
           <label for="lookupName">Find Your Invitation</label>
           <div class="rsvp-lookup-row">
-            <input type="text" id="lookupName" placeholder="Type your first name">
-            <button type="button" id="lookupBtn">Find Me</button>
+            <input type="text" id="lookupName" placeholder="Start typing your name..." autocomplete="off">
           </div>
+          <div id="lookupSuggestions" class="rsvp-suggestions" hidden></div>
         </div>
         <p id="lookupResult" class="rsvp-lookup-result" hidden></p>
+        <div id="lookupConfirmed" class="rsvp-lookup-confirmed" hidden>
+          <span id="lookupConfirmedText"></span>
+          <button type="button" id="lookupChangeBtn" class="rsvp-change-btn">Not you? Search again</button>
+        </div>
       </div>
 
-      <form id="rsvpForm" class="rsvp-form">
-        <div class="rsvp-field">
-          <label for="guest1_name">Your Name</label>
-          <input type="text" id="guest1_name" name="guest1_name" required>
-        </div>
+      <form id="rsvpForm" class="rsvp-form" hidden>
+        <input type="hidden" id="guest1_name" name="guest1_name">
         <div class="rsvp-field">
           <label for="rsvpEmail">Email</label>
           <input type="email" id="rsvpEmail" name="email" required>
@@ -967,11 +1023,26 @@
         </div>
 
         <div id="partySection" class="rsvp-party" hidden>
+          <div class="rsvp-guest" data-guest="1">
+            <div class="rsvp-field">
+              <label class="rsvp-checks-label">Will you join us for the late lunch afterward?</label>
+              <div class="rsvp-checks">
+                <label><input type="checkbox" name="guest1_attend_lunch" value="Yes" checked> Yes, count me in</label>
+              </div>
+            </div>
+          </div>
+
           <div class="rsvp-guest" data-guest="2" hidden>
             <div class="rsvp-guest-title">Guest 2 Details</div>
             <div class="rsvp-field">
               <label>Name</label>
               <input type="text" name="guest2_name">
+            </div>
+            <div class="rsvp-field">
+              <label class="rsvp-checks-label">Joining for the late lunch afterward?</label>
+              <div class="rsvp-checks">
+                <label><input type="checkbox" name="guest2_attend_lunch" value="Yes" checked> Yes, count them in</label>
+              </div>
             </div>
           </div>
 
@@ -980,6 +1051,12 @@
             <div class="rsvp-field">
               <label>Name</label>
               <input type="text" name="guest3_name">
+            </div>
+            <div class="rsvp-field">
+              <label class="rsvp-checks-label">Joining for the late lunch afterward?</label>
+              <div class="rsvp-checks">
+                <label><input type="checkbox" name="guest3_attend_lunch" value="Yes" checked> Yes, count them in</label>
+              </div>
             </div>
           </div>
         </div>
@@ -1016,8 +1093,7 @@
   <div class="item">
     <div class="item-label">After</div>
     <h3>Late Lunch / Early Dinner</h3>
-    <p>Once we're officially married, we're hoping to gather everyone for a late lunch or early dinner nearby — the plan is still coming together, so we'll share details as soon as they're locked in.</p>
-    <p>And if you're local or in town for the weekend, we'd love to have you back the next day for our full celebration on Saturday!</p>
+    <p>We'll grab a late lunch or early dinner together somewhere nearby afterward — location still TBD. We will also be having our larger celebration with everyone Saturday — <a class="map-link" href="https://vv-celebration.vercel.app/" target="_blank" rel="noopener">see the Saturday site here</a>.</p>
   </div>
 </section>
 
@@ -1101,17 +1177,28 @@
     var partySection = document.getElementById('partySection');
     var errorMsg = document.getElementById('rsvpError');
     var submitBtn = document.getElementById('rsvpSubmitBtn');
-    var lookupBtn = document.getElementById('lookupBtn');
     var lookupName = document.getElementById('lookupName');
     var lookupResult = document.getElementById('lookupResult');
+    var lookupSuggestions = document.getElementById('lookupSuggestions');
+    var lookupConfirmed = document.getElementById('lookupConfirmed');
+    var lookupConfirmedText = document.getElementById('lookupConfirmedText');
+    var lookupChangeBtn = document.getElementById('lookupChangeBtn');
     var rsvpToggleBtn = document.getElementById('rsvpToggleBtn');
     var rsvpCollapsible = document.getElementById('rsvpCollapsible');
     var rsvpIntroText = document.getElementById('rsvpIntroText');
     var rsvpDoneText = document.getElementById('rsvpDoneText');
-    var nextGuestNum = 2;
-    var maxPartySize = 3;
+    var maxPartySize = 0;
+    var matchedParty = null;
+    var matchedName = null;
     var hasSubmitted = false;
     var isExpanded = false;
+
+    var ALL_ENTRIES = [];
+    GUEST_PARTIES.forEach(function (party) {
+      party.forEach(function (name) {
+        ALL_ENTRIES.push({ name: name, party: party });
+      });
+    });
 
     function setExpanded(expand) {
       isExpanded = expand;
@@ -1132,74 +1219,147 @@
       if (block) block.hidden = false;
     }
 
-    lookupName.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        lookupBtn.click();
+    function hideAllExtraGuestSlots() {
+      for (var g = 2; g <= 3; g++) {
+        var block = partySection.querySelector('[data-guest="' + g + '"]');
+        if (block) {
+          block.hidden = true;
+          var nameInput = block.querySelector('input[type="text"]');
+          if (nameInput) nameInput.value = '';
+        }
+      }
+    }
+
+    function positionSuggestions() {
+      var rect = lookupName.getBoundingClientRect();
+      lookupSuggestions.style.left = rect.left + 'px';
+      lookupSuggestions.style.top = (rect.bottom + 6) + 'px';
+      lookupSuggestions.style.width = rect.width + 'px';
+    }
+
+    function clearSuggestions() {
+      lookupSuggestions.innerHTML = '';
+      lookupSuggestions.hidden = true;
+    }
+
+    function renderSuggestions(matches) {
+      lookupSuggestions.innerHTML = '';
+      if (!matches.length) {
+        lookupSuggestions.hidden = true;
+        return;
+      }
+      matches.forEach(function (entry) {
+        var item = document.createElement('button');
+        item.type = 'button';
+        item.className = 'rsvp-suggestion-item';
+        item.textContent = entry.name;
+        item.addEventListener('click', function () {
+          selectGuest(entry.name, entry.party);
+        });
+        lookupSuggestions.appendChild(item);
+      });
+      positionSuggestions();
+      lookupSuggestions.hidden = false;
+    }
+
+    window.addEventListener('scroll', function () {
+      if (!lookupSuggestions.hidden) positionSuggestions();
+    }, { passive: true });
+    window.addEventListener('resize', function () {
+      if (!lookupSuggestions.hidden) positionSuggestions();
+    });
+
+    function selectGuest(name, party) {
+      matchedName = name;
+      matchedParty = party;
+      maxPartySize = party.length;
+
+      clearSuggestions();
+      lookupResult.hidden = true;
+
+      document.getElementById('guest1_name').value = name;
+      lookupName.value = name;
+      lookupName.disabled = true;
+
+      var others = party.filter(function (n) { return n !== name; });
+      lookupConfirmedText.textContent = others.length
+        ? "RSVPing as " + name + " (with " + others.join(', ') + ")"
+        : "RSVPing as " + name;
+      lookupConfirmed.hidden = false;
+
+      hideAllExtraGuestSlots();
+      others.forEach(function (n, idx) {
+        var num = idx + 2;
+        revealGuestSlot(num);
+        var nameInput = partySection.querySelector('[data-guest="' + num + '"] input[type="text"]');
+        if (nameInput) nameInput.value = n;
+      });
+
+      form.hidden = false;
+    }
+
+    function resetSelection() {
+      matchedName = null;
+      matchedParty = null;
+      maxPartySize = 0;
+
+      form.hidden = true;
+      lookupConfirmed.hidden = true;
+      lookupResult.hidden = true;
+      lookupName.disabled = false;
+      lookupName.value = '';
+      lookupName.focus();
+      clearSuggestions();
+      hideAllExtraGuestSlots();
+      partySection.hidden = true;
+
+      toggleBtns.forEach(function (b) { b.classList.remove('active'); });
+      attendingField.value = '';
+      document.getElementById('guest1_name').value = '';
+    }
+
+    lookupChangeBtn.addEventListener('click', resetSelection);
+
+    lookupName.addEventListener('input', function () {
+      var typed = lookupName.value.trim().toLowerCase();
+      lookupResult.hidden = true;
+
+      if (!typed) {
+        clearSuggestions();
+        return;
+      }
+
+      var matches = ALL_ENTRIES.filter(function (entry) {
+        return entry.name.toLowerCase().indexOf(typed) !== -1;
+      });
+
+      if (matches.length) {
+        renderSuggestions(matches);
+      } else {
+        clearSuggestions();
+        lookupResult.hidden = false;
+        lookupResult.classList.remove('found');
+        lookupResult.textContent = "We couldn't find that name — please double-check the spelling, or reach out to us directly if you're having trouble finding your invitation.";
       }
     });
 
-    lookupBtn.addEventListener('click', function () {
-      var typed = lookupName.value.trim().toLowerCase();
-      lookupResult.hidden = false;
-      lookupResult.classList.remove('found');
-
-      if (!typed) {
-        lookupResult.textContent = "Please type your first name to search.";
-        return;
+    lookupName.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        var items = lookupSuggestions.querySelectorAll('.rsvp-suggestion-item');
+        if (items.length === 1) items[0].click();
       }
+    });
 
-      function findMatches(predicate) {
-        var matches = [];
-        GUEST_PARTIES.forEach(function (party) {
-          party.forEach(function (name) {
-            if (predicate(name.toLowerCase())) {
-              matches.push({ party: party, name: name });
-            }
-          });
-        });
-        return matches;
-      }
-
-      var exactMatches = findMatches(function (name) { return name === typed; });
-      var candidates = exactMatches.length ? exactMatches : findMatches(function (name) { return name.indexOf(typed) === 0; });
-
-      var matchedParty = null;
-      var matchedName = null;
-
-      if (candidates.length === 1) {
-        matchedParty = candidates[0].party;
-        matchedName = candidates[0].name;
-      } else if (candidates.length > 1) {
-        maxPartySize = 3;
-        lookupResult.textContent = "A few people match that — please type your full name (first name and last initial, like \"Vanessa C.\") so we can find the right invitation.";
-        return;
-      }
-
-      if (matchedParty) {
-        maxPartySize = matchedParty.length;
-        document.getElementById('guest1_name').value = matchedName;
-        var others = matchedParty.filter(function (n) { return n !== matchedName; });
-        lookupResult.textContent = others.length
-          ? "Welcome, " + matchedName + "! Looks like your party also includes: " + others.join(', ') + "."
-          : "Welcome, " + matchedName + "!";
-        lookupResult.classList.add('found');
-
-        nextGuestNum = 2;
-        others.forEach(function (name) {
-          revealGuestSlot(nextGuestNum);
-          var nameInput = partySection.querySelector('[data-guest="' + nextGuestNum + '"] input[type="text"]');
-          if (nameInput) nameInput.value = name;
-          nextGuestNum++;
-        });
-      } else {
-        maxPartySize = 3;
-        lookupResult.textContent = "We couldn't find that name — no worries, just fill in your info below!";
+    document.addEventListener('click', function (e) {
+      if (!lookupSuggestions.contains(e.target) && e.target !== lookupName) {
+        clearSuggestions();
       }
     });
 
     toggleBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
+        if (!matchedParty) return;
         toggleBtns.forEach(function (b) { b.classList.remove('active'); });
         btn.classList.add('active');
         attendingField.value = btn.getAttribute('data-value');
@@ -1215,6 +1375,10 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
+      if (!matchedParty) {
+        return;
+      }
+
       if (!attendingField.value) {
         errorMsg.hidden = false;
         return;
@@ -1224,11 +1388,18 @@
       submitBtn.textContent = 'Sending...';
 
       var formData = new FormData(form);
-      for (var g = 2; g <= 3; g++) {
-        if (g > maxPartySize) {
+      for (var g = 1; g <= 3; g++) {
+        if (g <= maxPartySize) {
+          var fieldName = 'guest' + g + '_attend_lunch';
+          var checkbox = form.querySelector('input[name="' + fieldName + '"]');
+          if (checkbox) {
+            formData.set(fieldName, checkbox.checked ? 'Yes' : 'No');
+          }
+        } else {
           // This guest slot isn't part of the party — strip any leaked value
           // so it doesn't show up in Formspree.
           formData.delete('guest' + g + '_name');
+          formData.delete('guest' + g + '_attend_lunch');
         }
       }
 
