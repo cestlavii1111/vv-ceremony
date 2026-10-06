@@ -954,7 +954,6 @@
 <nav class="nav" id="navFull">
   <a href="#ceremony">Ceremony</a>
   <a href="#parking">Parking</a>
-  <a href="#rsvp">RSVP</a>
   <a href="#attire">Attire</a>
   <a href="#contact">Contact</a>
 </nav>
@@ -964,7 +963,6 @@
   <div class="nav-dropdown" id="navDropdown">
     <a href="#ceremony">Ceremony</a>
     <a href="#parking">Parking</a>
-    <a href="#rsvp">RSVP</a>
     <a href="#attire">Attire</a>
     <a href="#contact">Contact</a>
   </div>
@@ -979,103 +977,6 @@
 <div class="photo-row">
   <div class="photo-slot"><img src="IMG_4052.JPG" alt=""></div>
 </div>
-
-<section id="rsvp">
-  <div class="rsvp-box">
-    <div id="rsvpIntro">
-      <h2>RSVP</h2>
-      <p id="rsvpIntroText">Please let us know if you'll be joining us for the courthouse ceremony by September 20, 2026</p>
-      <p id="rsvpDoneText" class="rsvp-done-text" hidden>Thank you for letting us know — we can't wait to celebrate with you! You can still make changes below anytime.</p>
-      <button type="button" class="rsvp-btn" id="rsvpToggleBtn">RSVP Here</button>
-    </div>
-
-    <div class="rsvp-collapsible" id="rsvpCollapsible">
-    <div class="rsvp-collapsible-inner">
-
-      <div class="rsvp-lookup">
-        <div class="rsvp-field rsvp-autocomplete-field">
-          <label for="lookupName">Find Your Invitation</label>
-          <div class="rsvp-lookup-row">
-            <input type="text" id="lookupName" placeholder="Start typing your name..." autocomplete="off">
-          </div>
-          <div id="lookupSuggestions" class="rsvp-suggestions" hidden></div>
-        </div>
-        <p id="lookupResult" class="rsvp-lookup-result" hidden></p>
-        <div id="lookupConfirmed" class="rsvp-lookup-confirmed" hidden>
-          <span id="lookupConfirmedText"></span>
-          <button type="button" id="lookupChangeBtn" class="rsvp-change-btn">Not you? Search again</button>
-        </div>
-      </div>
-
-      <form id="rsvpForm" class="rsvp-form" hidden>
-        <input type="hidden" id="guest1_name" name="guest1_name">
-        <div class="rsvp-field">
-          <label for="rsvpEmail">Email</label>
-          <input type="email" id="rsvpEmail" name="email" required>
-        </div>
-
-        <div class="rsvp-field">
-          <label>Will you be attending?</label>
-          <div class="rsvp-toggle">
-            <button type="button" class="rsvp-toggle-btn" data-value="Joyfully Accepts">Joyfully Accept</button>
-            <button type="button" class="rsvp-toggle-btn" data-value="Regretfully Declines">Regretfully Decline</button>
-          </div>
-          <input type="hidden" name="attending" id="attendingField">
-        </div>
-
-        <div id="partySection" class="rsvp-party" hidden>
-          <div class="rsvp-guest" data-guest="1">
-            <div class="rsvp-field">
-              <label class="rsvp-checks-label">Will you join us for the late lunch afterward?</label>
-              <div class="rsvp-checks">
-                <label><input type="checkbox" name="guest1_attend_lunch" value="Yes" checked> Yes, count me in</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="rsvp-guest" data-guest="2" hidden>
-            <div class="rsvp-guest-title">Guest 2 Details</div>
-            <div class="rsvp-field">
-              <label>Name</label>
-              <input type="text" name="guest2_name">
-            </div>
-            <div class="rsvp-field">
-              <label class="rsvp-checks-label">Joining for the late lunch afterward?</label>
-              <div class="rsvp-checks">
-                <label><input type="checkbox" name="guest2_attend_lunch" value="Yes" checked> Yes, count them in</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="rsvp-guest" data-guest="3" hidden>
-            <div class="rsvp-guest-title">Guest 3 Details</div>
-            <div class="rsvp-field">
-              <label>Name</label>
-              <input type="text" name="guest3_name">
-            </div>
-            <div class="rsvp-field">
-              <label class="rsvp-checks-label">Joining for the late lunch afterward?</label>
-              <div class="rsvp-checks">
-                <label><input type="checkbox" name="guest3_attend_lunch" value="Yes" checked> Yes, count them in</label>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="rsvp-field">
-          <label for="rsvpNote">Note to the Couple (optional)</label>
-          <textarea id="rsvpNote" name="note" rows="3"></textarea>
-        </div>
-
-        <p id="rsvpError" class="rsvp-error" hidden>Please select whether you'll be attending before submitting.</p>
-
-        <button type="submit" class="rsvp-btn" id="rsvpSubmitBtn">Submit RSVP</button>
-      </form>
-
-    </div>
-    </div>
-  </div>
-</section>
 
 <section id="ceremony">
   <h2>The Ceremony</h2>
@@ -1093,9 +994,13 @@
     <p>It's a short, simple legal ceremony — intimate, and just for our closest&nbsp;people.</p>
   </div>
   <div class="item">
-    <div class="item-label">After</div>
+    <div class="item-label">4:00 PM</div>
     <h3>Late Lunch / Early Dinner</h3>
-    <p>We'll grab a late lunch or early dinner together somewhere nearby afterward — location still TBD. We will also be having our larger celebration with everyone Saturday — <a class="map-link" href="https://vv-celebration.vercel.app/" target="_blank" rel="noopener">see the Saturday site here</a>.</p>
+    <p>Afterward, we'll head over for a late lunch / early dinner together at <strong>Stone Brewing World Bistro &amp; Gardens – Liberty Station</strong>. Our reservation is at 4:00&nbsp;PM.</p>
+    <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Stone+Brewing+World+Bistro+%26+Gardens+Liberty+Station%2C+2816+Historic+Decatur+Rd%2C+San+Diego%2C+CA+92106" target="_blank" rel="noopener">2816 Historic Decatur Rd, San Diego, CA 92106</a></p>
+    <p><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Stone+Brewing+World+Bistro+%26+Gardens+Liberty+Station%2C+2816+Historic+Decatur+Rd%2C+San+Diego%2C+CA+92106" target="_blank" rel="noopener">Google Maps</a> &nbsp;&bull;&nbsp; <a class="map-link" href="https://maps.apple.com/?q=Stone+Brewing+Liberty+Station&amp;address=2816+Historic+Decatur+Rd,+San+Diego,+CA+92106" target="_blank" rel="noopener">Apple Maps</a></p>
+    <p style="margin-top:12px;"><strong>Parking:</strong> There's plenty of free parking throughout the Liberty Station area.</p>
+    <p style="margin-top:12px;">We will also be having our larger celebration with everyone Saturday — <a class="map-link" href="https://vv-celebration.vercel.app/" target="_blank" rel="noopener">see the Saturday site here</a>.</p>
   </div>
 </section>
 
@@ -1177,282 +1082,6 @@
   <div class="foot-note"><span class="heart" aria-hidden="true"><svg viewBox="0 0 24 22" width="0.85em" height="0.78em" fill="currentColor"><path d="M12 19.3C12 19.3 2.5 12.8 2.5 8C2.5 4.7 5 2.4 8 2.4C10 2.4 11.2 3.7 12 5.3C12.8 3.7 14 2.4 16 2.4C19 2.4 21.5 4.7 21.5 8C21.5 12.8 12 19.3 12 19.3Z"/></svg></span> We can't wait to celebrate with you <span class="heart" aria-hidden="true"><svg viewBox="0 0 24 22" width="0.85em" height="0.78em" fill="currentColor"><path d="M12 19.3C12 19.3 2.5 12.8 2.5 8C2.5 4.7 5 2.4 8 2.4C10 2.4 11.2 3.7 12 5.3C12.8 3.7 14 2.4 16 2.4C19 2.4 21.5 4.7 21.5 8C21.5 12.8 12 19.3 12 19.3Z"/></svg></span></div>
   <div class="foot-note" style="margin-top:14px;"><a class="map-link" href="https://vv-celebration.vercel.app/" style="color:var(--stone-light);">Also joining us Saturday? Visit the Celebration site &rarr;</a></div>
 </footer>
-
-<script>
-  (function () {
-    var FORMSPREE_ENDPOINT = "https://formspree.io/f/xoeqyppr";
-
-    var GUEST_PARTIES = [
-      ["Jessica", "Guillaume", "Emma"],
-      ["Patricia"],
-      ["Vanessa K."],
-      ["Sochenda", "Chris"],
-      ["Kun"],
-      ["Beau"],
-      ["Melissa", "Simon"],
-      ["Vanessa C.", "Valeria"],
-      ["Ryan", "Cam"]
-    ];
-
-    var form = document.getElementById('rsvpForm');
-    var toggleBtns = document.querySelectorAll('.rsvp-toggle-btn');
-    var attendingField = document.getElementById('attendingField');
-    var partySection = document.getElementById('partySection');
-    var errorMsg = document.getElementById('rsvpError');
-    var submitBtn = document.getElementById('rsvpSubmitBtn');
-    var lookupName = document.getElementById('lookupName');
-    var lookupResult = document.getElementById('lookupResult');
-    var lookupSuggestions = document.getElementById('lookupSuggestions');
-    var lookupConfirmed = document.getElementById('lookupConfirmed');
-    var lookupConfirmedText = document.getElementById('lookupConfirmedText');
-    var lookupChangeBtn = document.getElementById('lookupChangeBtn');
-    var rsvpToggleBtn = document.getElementById('rsvpToggleBtn');
-    var rsvpCollapsible = document.getElementById('rsvpCollapsible');
-    var rsvpIntroText = document.getElementById('rsvpIntroText');
-    var rsvpDoneText = document.getElementById('rsvpDoneText');
-    var maxPartySize = 0;
-    var matchedParty = null;
-    var matchedName = null;
-    var hasSubmitted = false;
-    var isExpanded = false;
-
-    var ALL_ENTRIES = [];
-    GUEST_PARTIES.forEach(function (party) {
-      party.forEach(function (name) {
-        ALL_ENTRIES.push({ name: name, party: party });
-      });
-    });
-
-    function setExpanded(expand) {
-      isExpanded = expand;
-      rsvpCollapsible.classList.toggle('expanded', expand);
-      if (expand) {
-        rsvpToggleBtn.textContent = 'Close';
-      } else {
-        rsvpToggleBtn.textContent = hasSubmitted ? 'Edit Your RSVP' : 'RSVP Here';
-      }
-    }
-
-    rsvpToggleBtn.addEventListener('click', function () {
-      setExpanded(!isExpanded);
-    });
-
-    function revealGuestSlot(num) {
-      var block = partySection.querySelector('[data-guest="' + num + '"]');
-      if (block) block.hidden = false;
-    }
-
-    function hideAllExtraGuestSlots() {
-      for (var g = 2; g <= 3; g++) {
-        var block = partySection.querySelector('[data-guest="' + g + '"]');
-        if (block) {
-          block.hidden = true;
-          var nameInput = block.querySelector('input[type="text"]');
-          if (nameInput) nameInput.value = '';
-        }
-      }
-    }
-
-    function positionSuggestions() {
-      var rect = lookupName.getBoundingClientRect();
-      lookupSuggestions.style.left = rect.left + 'px';
-      lookupSuggestions.style.top = (rect.bottom + 6) + 'px';
-      lookupSuggestions.style.width = rect.width + 'px';
-    }
-
-    function clearSuggestions() {
-      lookupSuggestions.innerHTML = '';
-      lookupSuggestions.hidden = true;
-    }
-
-    function renderSuggestions(matches) {
-      lookupSuggestions.innerHTML = '';
-      if (!matches.length) {
-        lookupSuggestions.hidden = true;
-        return;
-      }
-      matches.forEach(function (entry) {
-        var item = document.createElement('button');
-        item.type = 'button';
-        item.className = 'rsvp-suggestion-item';
-        item.textContent = entry.name;
-        item.addEventListener('click', function () {
-          selectGuest(entry.name, entry.party);
-        });
-        lookupSuggestions.appendChild(item);
-      });
-      positionSuggestions();
-      lookupSuggestions.hidden = false;
-    }
-
-    window.addEventListener('scroll', function () {
-      if (!lookupSuggestions.hidden) positionSuggestions();
-    }, { passive: true });
-    window.addEventListener('resize', function () {
-      if (!lookupSuggestions.hidden) positionSuggestions();
-    });
-
-    function selectGuest(name, party) {
-      matchedName = name;
-      matchedParty = party;
-      maxPartySize = party.length;
-
-      clearSuggestions();
-      lookupResult.hidden = true;
-
-      document.getElementById('guest1_name').value = name;
-      lookupName.value = name;
-      lookupName.disabled = true;
-
-      var others = party.filter(function (n) { return n !== name; });
-      lookupConfirmedText.textContent = others.length
-        ? "RSVPing as " + name + " (with " + others.join(', ') + ")"
-        : "RSVPing as " + name;
-      lookupConfirmed.hidden = false;
-
-      hideAllExtraGuestSlots();
-      others.forEach(function (n, idx) {
-        var num = idx + 2;
-        revealGuestSlot(num);
-        var nameInput = partySection.querySelector('[data-guest="' + num + '"] input[type="text"]');
-        if (nameInput) nameInput.value = n;
-      });
-
-      form.hidden = false;
-    }
-
-    function resetSelection() {
-      matchedName = null;
-      matchedParty = null;
-      maxPartySize = 0;
-
-      form.hidden = true;
-      lookupConfirmed.hidden = true;
-      lookupResult.hidden = true;
-      lookupName.disabled = false;
-      lookupName.value = '';
-      lookupName.focus();
-      clearSuggestions();
-      hideAllExtraGuestSlots();
-      partySection.hidden = true;
-
-      toggleBtns.forEach(function (b) { b.classList.remove('active'); });
-      attendingField.value = '';
-      document.getElementById('guest1_name').value = '';
-    }
-
-    lookupChangeBtn.addEventListener('click', resetSelection);
-
-    lookupName.addEventListener('input', function () {
-      var typed = lookupName.value.trim().toLowerCase();
-      lookupResult.hidden = true;
-
-      if (!typed) {
-        clearSuggestions();
-        return;
-      }
-
-      var matches = ALL_ENTRIES.filter(function (entry) {
-        return entry.name.toLowerCase().indexOf(typed) !== -1;
-      });
-
-      if (matches.length) {
-        renderSuggestions(matches);
-      } else {
-        clearSuggestions();
-        lookupResult.hidden = false;
-        lookupResult.classList.remove('found');
-        lookupResult.textContent = "We couldn't find that name — please double-check the spelling, or reach out to us directly if you're having trouble finding your invitation.";
-      }
-    });
-
-    lookupName.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        var items = lookupSuggestions.querySelectorAll('.rsvp-suggestion-item');
-        if (items.length === 1) items[0].click();
-      }
-    });
-
-    document.addEventListener('click', function (e) {
-      if (!lookupSuggestions.contains(e.target) && e.target !== lookupName) {
-        clearSuggestions();
-      }
-    });
-
-    toggleBtns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        if (!matchedParty) return;
-        toggleBtns.forEach(function (b) { b.classList.remove('active'); });
-        btn.classList.add('active');
-        attendingField.value = btn.getAttribute('data-value');
-        errorMsg.hidden = true;
-        if (btn.getAttribute('data-value') === 'Joyfully Accepts') {
-          partySection.hidden = false;
-        } else {
-          partySection.hidden = true;
-        }
-      });
-    });
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-
-      if (!matchedParty) {
-        return;
-      }
-
-      if (!attendingField.value) {
-        errorMsg.hidden = false;
-        return;
-      }
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-
-      var formData = new FormData(form);
-      for (var g = 1; g <= 3; g++) {
-        if (g <= maxPartySize) {
-          var fieldName = 'guest' + g + '_attend_lunch';
-          var checkbox = form.querySelector('input[name="' + fieldName + '"]');
-          if (checkbox) {
-            formData.set(fieldName, checkbox.checked ? 'Yes' : 'No');
-          }
-        } else {
-          // This guest slot isn't part of the party — strip any leaked value
-          // so it doesn't show up in Formspree.
-          formData.delete('guest' + g + '_name');
-          formData.delete('guest' + g + '_attend_lunch');
-        }
-      }
-
-      fetch(FORMSPREE_ENDPOINT, {
-        method: 'POST',
-        body: formData,
-        headers: { Accept: 'application/json' }
-      })
-        .then(function (response) {
-          if (response.ok) {
-            hasSubmitted = true;
-            rsvpIntroText.hidden = true;
-            rsvpDoneText.hidden = false;
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Submit RSVP';
-            setExpanded(false);
-            launchConfetti(document.querySelector('.rsvp-box'));
-          } else {
-            throw new Error('Submission failed');
-          }
-        })
-        .catch(function () {
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Submit RSVP';
-          errorMsg.textContent = "Something went wrong sending your RSVP — please try again in a moment.";
-          errorMsg.hidden = false;
-        });
-    });
-  })();
-</script>
 
 <script>
   (function () {
@@ -1541,38 +1170,6 @@
       toggleBtn.textContent = expanded ? 'Close' : 'Find Nearby Pay Lots';
     });
   })();
-</script>
-
-<script>
-  function launchConfetti(originEl) {
-    if (!originEl) return;
-    var rect = originEl.getBoundingClientRect();
-    var originX = rect.left + rect.width / 2;
-    var originY = rect.top + 30;
-    var colors = ['#b5673a', '#c99a3f', '#8a9a6b', '#c9a08e', '#3f5d58', '#faf8f2', '#5c2430'];
-
-    for (var i = 0; i < 32; i++) {
-      var piece = document.createElement('div');
-      piece.className = 'confetti-piece';
-
-      var dx = (Math.random() - 0.5) * 320;
-      var dy = 160 + Math.random() * 200;
-      var rot = (Math.random() - 0.5) * 720;
-
-      piece.style.left = originX + 'px';
-      piece.style.top = originY + 'px';
-      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-      piece.style.setProperty('--dx', dx + 'px');
-      piece.style.setProperty('--dy', dy + 'px');
-      piece.style.setProperty('--rot', rot + 'deg');
-      piece.style.animationDuration = (1000 + Math.random() * 600) + 'ms';
-
-      document.body.appendChild(piece);
-      piece.addEventListener('animationend', function () {
-        this.remove();
-      });
-    }
-  }
 </script>
 
 </body>
